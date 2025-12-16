@@ -22,35 +22,30 @@
  ======================= */
 
 :root {
-  /* Primary / Secondary */
   --primary-color: #3878c3;
-  /* Main accent color */
+
   --secondary-color: #ff5722;
-  /* Secondary accent */
-  /* Neutral / Text */
+
   --text-color: #0d0c0c;
-  /* Main text */
+  --text-color-white: rgb(246, 246, 246);
   --text-muted: #666;
-  /* Muted text */
+
   --bg-color: #fefefe;
   --bg-muted: #666;
-  /* Default background */
+
   --border-color: #ddd;
-  /* Default border */
-  /* Status / Semantic Colors */
+
   --success-color: #28a745;
-  /* Success / positive */
+
   --warning-color: #ffc107;
-  /* Warning / caution */
+
   --danger-color: #dc3545;
-  /* Error / danger */
+
   --info-color: #17a2b8;
-  /* Info / neutral message */
-  /* Accent / Highlights */
+
   --highlight-color: #184476;
-  /* For special attention */
+
   --highlight-alt: #3878c3;
-  /* Alternate accent */
 }
 /* Body */
 body {
@@ -87,14 +82,17 @@ table {
 .heading-large {
   font-size: 2.5rem;
   font-weight: bold;
+  color: var(--text-color,#111);
 }
 .heading-medium {
   font-size: 1.8rem;
   font-weight: 600;
+  color: var(--text-color,#111);
 }
 .heading-small {
   font-size: 1.2rem;
   font-weight: 500;
+  color: var(--text-color,#111);
 }
 .body-text {
   font-size: 1rem;
@@ -132,11 +130,11 @@ table {
     fixed;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: rotate-text-clip-image 5s linear infinite;
+  animation: text-clip-image-animate 5s linear infinite;
 }
-@keyframes rotate-text-clip-image {
+@keyframes text-clip-image-animate {
   to {
-    background-position-x: 10px;
+    background-position-x: 30px;
   }
 }
 /* =======================
@@ -151,7 +149,7 @@ table {
 .text-shadow {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
-.text-normal {
+.normal-text {
   font-weight: normal;
 }
 .italic {
@@ -184,55 +182,52 @@ table {
 /* -----------------------
  Text Color Utilities
  ----------------------- */
-.text-primary {
+.primary-text {
   color: white;
 }
-.text-secondary {
+.secondary-text {
   color: var(--secondary-color);
 }
-.text-success {
+.success-text {
   color: var(--success-color);
 }
-.text-warning {
+.warning-text {
   color: var(--warning-color);
 }
-.text-danger {
+.danger-text {
   color: var(--danger-color);
 }
-.text-info {
+.info-text {
   color: var(--info-color);
 }
-.text-highlight {
+.highlight-text- {
   background: var(--highlight-alt);
   color: white;
 }
-.text-highlight-alt {
+.highlight-text-alt {
   background: var(--highlight-color);
   color: white;
 }
 /* -----------------------
  Borders
  ----------------------- */
-.border {
-  border: 1px solid var(--border-color) !important;
+.primary-border {
+  border: 2px solid var(--primary-color) !important;
 }
-.border-primary {
-  border: 1px solid var(--primary-color) !important;
+.secondary-border {
+  border: 2px solid var(--secondary-color) !important;
 }
-.border-secondary {
-  border: 1px solid var(--secondary-color) !important;
+.success-border {
+  border: 2px solid var(--success-color) !important;
 }
-.border-success {
-  border: 1px solid var(--success-color) !important;
+.warning-border {
+  border: 2px solid var(--warning-color) !important;
 }
-.border-warning {
-  border: 1px solid var(--warning-color) !important;
+.danger-border {
+  border: 2px solid var(--danger-color) !important;
 }
-.border-danger {
-  border: 1px solid var(--danger-color) !important;
-}
-.border-info {
-  border: 1px solid var(--info-color) !important;
+.info-border {
+  border: 2px solid var(--info-color) !important;
 }
 /* -----------------------
  Background Utilities
@@ -272,7 +267,7 @@ button {
   color: var(--text-color, #ffffff);
 }
 .button {
-  padding: 0.5rem 1.4rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 10px;
   font-size: 1rem;
   backdrop-filter: blur(10px);
@@ -289,25 +284,30 @@ button {
   border: solid 2px var(--success-color, #0077ff);
   color: var(--text-color-white, white);
 }
-.button.primary-button {
+.button.primary {
   background-color: var(--primary-color, #0077ff);
   color: var(--text-color-white, white);
   border-radius: 12px;
 }
-.button.dangerous-button {
+.button.secondary {
+  background-color: var(--secondary-color, #0077ff);
+  color: var(--text-color-white, white);
+  border-radius: 12px;
+}
+.button.dangerous {
   background-color: var(--danger-color, #dc3545);
   color: var(--text-color-white, white);
   border-radius: 12px;
 }
-.button.dangerous-button:hover {
+.button.dangerous:hover {
   box-shadow: 0px 0px 20px #cf1212;
 }
-.button.warning-button {
+.button.warning {
   background-color: var(--warning-color, #ffc107);
   color: var(--text-color-white, white);
   border-radius: 12px;
 }
-.button.warning-button:hover {
+.button.warning:hover {
   box-shadow: 0px 0px 20px #c1b506;
 }
 .disable-box-shadow.button:hover {
@@ -317,11 +317,10 @@ button {
   --font-size: 1rem;
   font-size: var(--font-size);
   padding: calc(var(--font-size) * 0.5) calc(var(--font-size) * 1.6);
-  padding-right: calc(var(--font-size) * 2.5);
   border-radius: 8px 15px;
   font-weight: 600;
   width: fit-content;
-  background: var(--success-color, #0077ff);
+  background: var(--primary-color, #0077ff);
   transition: all 0.2s ease;
   color: var(--text-color-white, white);
   position: relative;
@@ -331,43 +330,126 @@ button {
 .cart-button:hover {
   transform: translateY(-4px);
   border-radius: 15px 10px 15px 10px;
+  padding-right: calc(var(--font-size) * 2.5);
 }
 .cart-button:active {
   transform: translateY(2px);
-  background-color: #0077ff;
+  background-color: var(--success-color);
+  padding-right: calc(var(--font-size) * 2.5);
 }
 .cart-button:focus {
-  background-color: #0077ff;
+  background-color: var(--success-color);
+  padding-right: calc(var(--font-size) * 2.5);
 }
 .cart-button::after {
   content: "🛒";
+  filter: blur(3px);
   position: absolute;
   right: 100%;
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-out;
 }
 .cart-button:hover::after {
-  /* content: "✔️"; */
-  right: 5%;
+  filter: blur(0px);
+  right: 7%;
 }
+
 .cart-button:focus::after {
-  content: "✔️";
+  filter: blur(0px);
+  transform: translateY(500%);
+  transition: all 0.4s ease-in;
+  top: 13%;
   right: 5%;
 }
-.bd-rd-0 {
+.cart-button::before {
+  content: "✔️";
+  filter: blur(0px);
+  position: absolute;
+  transform: translate(500%);
+  transition: transform 0.4s ease-out;
+  top: 13%;
+  right: 7%;
+}
+.cart-button:focus::before {
+  transform: translate(0%);
+}
+
+.send-button {
+  --font-size: 1rem;
+  font-size: var(--font-size);
+  padding: calc(var(--font-size) * 0.5) calc(var(--font-size) * 1.5);
+  padding-right: calc(var(--font-size) * 2);
+  border-radius: 8px 15px;
+  font-weight: 600;
+  width: fit-content;
+  background: var(--warning-color, #0077ff);
+  transition: all 0.2s ease;
+  color: var(--text-color-white, white);
+  position: relative;
+  overflow: hidden;
+}
+
+.send-button:hover {
+  transform: translateY(-4px);
+  border-radius: 15px 10px 15px 10px;
+}
+.send-button:active {
+  transform: translateY(2px);
+  background-color: var(--success-color);
+}
+.send-button:focus {
+  background-color: var(--success-color);
+}
+.send-button::after {
+  content: "➤";
+  position: absolute;
+  right: 12%;
+  transition: transform 0.2s ease;
+}
+.send-button:hover::after {
+  transform: translate(-15%, 15%);
+  transform: rotate(-50deg);
+}
+.send-button:focus::after {
+  transform: translate(510%, -350%);
+  transition: transform 1s ease-in;
+}
+.send-button::before {
+  content: "send";
+  transition: transform 0.2s ease-in;
+}
+.send-button:focus::before {
+  content: "sent";
+}
+.send-button:focus {
+  padding-right: calc(var(--font-size) * 1.6);
+}
+.radius-0 {
   border-radius: 0 !important;
 }
-.bd-rd-5 {
+.radius-5 {
   border-radius: 5px !important;
 }
-.bd-rd-10 {
+.radius-10 {
   border-radius: 10px !important;
 }
-.bd-rd-12 {
+.radius-12 {
   border-radius: 12px !important;
 }
-.bd-rd-15 {
+.radius-15 {
   border-radius: 15px !important;
 }
-.bd-rd-50 {
+.radius-50 {
   border-radius: 50% !important;
+}
+.radius-10-15 {
+  border-radius: 10px 15px !important;
+}
+.radius-15-25 {
+  border-radius: 15px 25px !important;
+}
+.radius-15-10 {
+  border-radius: 15px 10px !important;
+}
+.radius-25-15 {
+  border-radius: 25px 15px !important;
 }
